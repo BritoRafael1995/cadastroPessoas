@@ -6,4 +6,12 @@
     <RootNamespace>cadastro_pessoas.Repository</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="MongoDB.Driver" Version="2.14.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\cadastro-pessoas.Model\cadastro-pessoas.Model.csproj" />
+  </ItemGroup>
+
 </Project>
