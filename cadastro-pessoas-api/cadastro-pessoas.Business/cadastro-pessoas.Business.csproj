@@ -6,4 +6,9 @@
     <RootNamespace>cadastro_pessoas.Business</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\cadastro-pessoas.Model\cadastro-pessoas.Model.csproj" />
+    <ProjectReference Include="..\cadastro-pessoas.Repository\cadastro-pessoas.Repository.csproj" />
+  </ItemGroup>
+
 </Project>

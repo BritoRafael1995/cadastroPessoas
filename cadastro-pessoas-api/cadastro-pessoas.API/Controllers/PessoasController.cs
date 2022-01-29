@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using cadastro_pessoas.Business.Implementation;
+using cadastro_pessoas.Business.Interface;
+using cadastro_pessoas.Model;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +15,11 @@ namespace cadastro_pessoas.API.Controllers
     [ApiController]
     public class PessoasController : ControllerBase
     {
+        private readonly IPessoasBusiness _pessoasBusiness;
+        public PessoasController()
+        {
+            _pessoasBusiness = new PessoasBusiness();
+        }
         // GET: api/<PessoasController>
         [HttpGet]
         public IEnumerable<string> Get()
@@ -28,8 +36,10 @@ namespace cadastro_pessoas.API.Controllers
 
         // POST api/<PessoasController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public IActionResult Post([FromBody] Pessoa pessoa)
         {
+            var retorno = _pessoasBusiness.AddPessoa(pessoa);
+            return StatusCode(201, retorno);
         }
 
         // PUT api/<PessoasController>/5
