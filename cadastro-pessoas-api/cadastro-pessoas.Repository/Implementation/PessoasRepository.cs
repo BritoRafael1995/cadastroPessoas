@@ -47,5 +47,17 @@ namespace cadastro_pessoas.Repository.Implementation
                 throw new Exception();
             }
         }
+
+        public void UpdatePessoa(string id, Pessoa pessoa)
+        {
+            try
+            {
+                _collectionPessoa.FindOneAndReplace(p => p.Id == id, pessoa);
+            }
+            catch
+            {
+                throw new Exception();
+            }
+        }
     }
 }

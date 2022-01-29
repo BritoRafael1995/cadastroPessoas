@@ -12,6 +12,6 @@ namespace cadastro_pessoas.Business.Interface
         Pessoa AddPessoa(Pessoa pessoa);
         Pessoa GetPessoaById(string id);
         List<Pessoa> GetPessoas();
-
+        Pessoa UpdatePessoa(string id, Pessoa pessoa);
     }
 }

@@ -20,7 +20,7 @@ namespace cadastro_pessoas.API.Controllers
         {
             _pessoasBusiness = new PessoasBusiness();
         }
-        // GET: api/<PessoasController>
+        // GET: api/Pessoas
         [HttpGet]
         public IActionResult Get()
         {
@@ -28,7 +28,7 @@ namespace cadastro_pessoas.API.Controllers
             return Ok(retorno);
         }
 
-        // GET api/<PessoasController>/5
+        // GET api/Pessoas/5
         [HttpGet("{id}")]
         public IActionResult GetById(string id)
         {
@@ -36,7 +36,7 @@ namespace cadastro_pessoas.API.Controllers
             return Ok(retorno);
         }
 
-        // POST api/<PessoasController>
+        // POST api/Pessoas
         [HttpPost]
         public IActionResult Post([FromBody] Pessoa pessoa)
         {
@@ -44,16 +44,19 @@ namespace cadastro_pessoas.API.Controllers
             return StatusCode(201, retorno);
         }
 
-        // PUT api/<PessoasController>/5
+        // PUT api/Pessoas/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public IActionResult Put(string id, [FromBody] Pessoa pessoa)
         {
+            var retorno = _pessoasBusiness.UpdatePessoa(id, pessoa);
+            return Ok(retorno);
         }
 
-        // DELETE api/<PessoasController>/5
+        // DELETE api/Pessoas/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(string id)
         {
+            return Ok();
         }
     }
 }
