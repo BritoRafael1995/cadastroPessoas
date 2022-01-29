@@ -22,9 +22,10 @@ namespace cadastro_pessoas.API.Controllers
         }
         // GET: api/<PessoasController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IActionResult Get()
         {
-            return new string[] { "value1", "value2" };
+            var retorno = _pessoasBusiness.GetPessoas();
+            return Ok(retorno);
         }
 
         // GET api/<PessoasController>/5
