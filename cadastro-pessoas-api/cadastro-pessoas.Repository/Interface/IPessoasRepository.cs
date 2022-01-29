@@ -10,5 +10,6 @@ namespace cadastro_pessoas.Repository.Interface
     public interface IPessoasRepository
     {
         void AddPessoa(Pessoa pessoa);
+        List<Pessoa> GetPessoas();
     }
 }
