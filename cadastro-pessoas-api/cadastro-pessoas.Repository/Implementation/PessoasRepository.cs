@@ -24,6 +24,18 @@ namespace cadastro_pessoas.Repository.Implementation
             }
         }
 
+        public Pessoa GetPessoaById(string id)
+        {
+            try
+            {
+                return _collectionPessoa.Find(p => p.Id == id).First();
+            }
+            catch
+            {
+                throw new Exception();
+            }
+        }
+
         public List<Pessoa> GetPessoas()
         {
             try

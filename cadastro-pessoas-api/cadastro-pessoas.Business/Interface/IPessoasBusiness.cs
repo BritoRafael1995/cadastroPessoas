@@ -10,6 +10,8 @@ namespace cadastro_pessoas.Business.Interface
     public interface IPessoasBusiness
     {
         Pessoa AddPessoa(Pessoa pessoa);
+        Pessoa GetPessoaById(string id);
         List<Pessoa> GetPessoas();
+
     }
 }

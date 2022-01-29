@@ -29,6 +29,11 @@ namespace cadastro_pessoas.Business.Implementation
             return pessoa;
         }
 
+        public Pessoa GetPessoaById(string id)
+        {
+            return _pessoaRepository.GetPessoaById(id);
+        }
+
         public List<Pessoa> GetPessoas()
         {
             return _pessoaRepository.GetPessoas();
