@@ -6,4 +6,8 @@
     <RootNamespace>cadastro_pessoas.Model</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="MongoDB.Bson" Version="2.14.1" />
+  </ItemGroup>
+
 </Project>
