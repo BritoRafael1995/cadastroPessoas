@@ -6,9 +6,4 @@
     <RootNamespace>cadastro_pessoas.Business</RootNamespace>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="Interface\" />
-    <Folder Include="Implementation\" />
-  </ItemGroup>
-
 </Project>
