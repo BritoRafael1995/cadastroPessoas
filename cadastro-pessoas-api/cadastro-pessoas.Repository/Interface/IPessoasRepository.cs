@@ -12,5 +12,6 @@ namespace cadastro_pessoas.Repository.Interface
         void AddPessoa(Pessoa pessoa);
         Pessoa GetPessoaById(string id);
         List<Pessoa> GetPessoas();
+        void UpdatePessoa(string id, Pessoa pessoa);
     }
 }

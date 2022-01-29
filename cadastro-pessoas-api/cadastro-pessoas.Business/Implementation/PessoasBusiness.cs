@@ -38,5 +38,12 @@ namespace cadastro_pessoas.Business.Implementation
         {
             return _pessoaRepository.GetPessoas();
         }
+
+        public Pessoa UpdatePessoa(string id, Pessoa pessoa)
+        {
+            _pessoaRepository.UpdatePessoa(id, pessoa);
+
+            return pessoa;
+        }
     }
 }
