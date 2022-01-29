@@ -30,9 +30,10 @@ namespace cadastro_pessoas.API.Controllers
 
         // GET api/<PessoasController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public IActionResult GetById(string id)
         {
-            return "value";
+            var retorno = _pessoasBusiness.GetPessoaById(id);
+            return Ok(retorno);
         }
 
         // POST api/<PessoasController>
