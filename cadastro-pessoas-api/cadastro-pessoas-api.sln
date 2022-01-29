@@ -14,6 +14,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "cadastro-pessoas.Business",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "cadastro-pessoas.Repository", "cadastro-pessoas.Repository\cadastro-pessoas.Repository.csproj", "{DD16C33C-3DCE-46C8-AB6C-781A663BB8FB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "cadastro-pessoas.Model", "cadastro-pessoas.Model\cadastro-pessoas.Model.csproj", "{34AC6C3F-B185-4B3E-8D7E-C7A7AE8872D9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,6 +34,10 @@ Global
 		{DD16C33C-3DCE-46C8-AB6C-781A663BB8FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DD16C33C-3DCE-46C8-AB6C-781A663BB8FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DD16C33C-3DCE-46C8-AB6C-781A663BB8FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{34AC6C3F-B185-4B3E-8D7E-C7A7AE8872D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34AC6C3F-B185-4B3E-8D7E-C7A7AE8872D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34AC6C3F-B185-4B3E-8D7E-C7A7AE8872D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34AC6C3F-B185-4B3E-8D7E-C7A7AE8872D9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
