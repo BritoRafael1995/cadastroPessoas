@@ -2,6 +2,7 @@
 using cadastro_pessoas.Model;
 using cadastro_pessoas.Repository.Implementation;
 using cadastro_pessoas.Repository.Interface;
+using MongoDB.Bson;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,9 +22,16 @@ namespace cadastro_pessoas.Business.Implementation
 
         public Pessoa AddPessoa(Pessoa pessoa)
         {
+            pessoa.Id = ObjectId.GenerateNewId().ToString();
+            pessoa.DataCadastro = DateTime.Now;
             _pessoaRepository.AddPessoa(pessoa);
 
             return pessoa;
+        }
+
+        public List<Pessoa> GetPessoas()
+        {
+            return _pessoaRepository.GetPessoas();
         }
     }
 }
