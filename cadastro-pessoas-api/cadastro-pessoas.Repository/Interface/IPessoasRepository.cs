@@ -10,6 +10,7 @@ namespace cadastro_pessoas.Repository.Interface
     public interface IPessoasRepository
     {
         void AddPessoa(Pessoa pessoa);
+        void DeletePessoa(string id);
         Pessoa GetPessoaById(string id);
         List<Pessoa> GetPessoas();
         void UpdatePessoa(string id, Pessoa pessoa);

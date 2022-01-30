@@ -29,6 +29,13 @@ namespace cadastro_pessoas.Business.Implementation
             return pessoa;
         }
 
+        public List<Pessoa> DeletePessoa(string id)
+        {
+            _pessoaRepository.DeletePessoa(id);
+
+            return _pessoaRepository.GetPessoas();
+        }
+
         public Pessoa GetPessoaById(string id)
         {
             return _pessoaRepository.GetPessoaById(id);
