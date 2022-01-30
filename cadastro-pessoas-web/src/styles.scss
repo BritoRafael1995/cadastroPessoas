@@ -2,3 +2,13 @@ html,
 body {
   height: 100%;
 }
+
+td {
+    cursor: pointer;
+}
+
+.btn-xs {
+    padding: 0.15rem 0.4rem !important;
+    font-size: .775rem !important;
+    border-radius: 0.2rem !important;
+}
