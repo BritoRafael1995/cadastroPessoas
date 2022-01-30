@@ -56,7 +56,8 @@ namespace cadastro_pessoas.API.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(string id)
         {
-            return Ok();
+            var pessoasRestantes = _pessoasBusiness.DeletePessoa(id);
+            return Ok(pessoasRestantes);
         }
     }
 }

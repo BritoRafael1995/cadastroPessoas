@@ -24,6 +24,18 @@ namespace cadastro_pessoas.Repository.Implementation
             }
         }
 
+        public void DeletePessoa(string id)
+        {
+            try
+            {
+                _collectionPessoa.FindOneAndDelete(p => p.Id == id);
+            }
+            catch
+            {
+                throw new Exception();
+            }
+        }
+
         public Pessoa GetPessoaById(string id)
         {
             try
