@@ -1,0 +1,29 @@
+<div class="modal-header">
+    <h4 class="modal-title">Cadastrar Pessoa</h4>
+
+    <button type="button" class="close" aria-label="Close" (click)="bsModalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <form [formGroup]="formPessoa">
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group">
+                    <span class="input-title">Nome</span>
+                    <input type="text" class="form-control form-control-sm" formControlName="nome">
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                    <span class="input-title">Sobrenome</span>
+                    <input type="text" class="form-control form-control-sm" formControlName="sobrenome">
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-secondary btn-sm">Cancelar</button>
+    <button class="btn btn-success btn-sm">Salvar</button>
+</div>

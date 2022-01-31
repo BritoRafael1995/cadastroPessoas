@@ -22,7 +22,7 @@
                         </div>
                     </div>
                     <div class="col-2">
-                        <button class="btn btn-primary btn-xs" style="position: absolute; right: 1rem;">Novo</button>
+                        <button class="btn btn-primary btn-xs" style="position: absolute; right: 1rem;" (click)="cadastrarPessoa()">Novo</button>
                     </div>
                 </div>
             </caption>
@@ -33,11 +33,11 @@
                 <th>Estado</th>
             </thead>
             <tbody>
-                <tr>
-                    <td>Rafael</td>
-                    <td>(21) 988884433</td>
-                    <td>teste@gmail.com</td>
-                    <td>RJ</td>
+                <tr *ngFor="let pessoa of pessoas">
+                    <td>{{pessoa.nome}} {{pessoa.sobrenome}}</td>
+                    <td>{{pessoa.telefone}}</td>
+                    <td>{{pessoa.email}}</td>
+                    <td>{{pessoa.estado}}</td>
                 </tr>
             </tbody>
         </table>
