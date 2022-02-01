@@ -1,13 +1,12 @@
 <div class="modal-header">
-    <h4 class="modal-title">Cadastrar Pessoa</h4>
+    <h4 class="modal-title" *ngIf="!pessoa.id">Cadastrar Pessoa</h4>
+    <h4 class="modal-title" *ngIf="pessoa.id">Editar Pessoa</h4>
 
-    <button type="button" class="close" aria-label="Close" (click)="bsModalRef.hide()">
-        <span aria-hidden="true">&times;</span>
-    </button>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="bsModalRef.hide()"></button>
 </div>
 <div class="modal-body">
     <form [formGroup]="formPessoa">
-        <div class="row">
+        <div class="row mb-2">
             <div class="col-6">
                 <div class="form-group">
                     <span class="input-title">Nome</span>
@@ -21,9 +20,59 @@
                 </div>
             </div>
         </div>
+        <div class="row mb-2">
+            <div class="col-6">
+                <div class="form-group">
+                    <span class="input-title">E-mail</span>
+                    <input type="text" class="form-control form-control-sm" formControlName="email">
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                    <span class="input-title">Telefone</span>
+                    <input type="text" class="form-control form-control-sm" formControlName="telefone">
+                </div>
+            </div>
+        </div>
+        <div class="row mb-2">
+            <div class="col-3">
+                <div class="form-group">
+                    <span class="input-title">Nacionalidade</span>
+                    <input type="text" class="form-control form-control-sm" formControlName="nacionalidade">
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="form-group">
+                    <span class="input-title">CEP</span>
+                    <input type="text" class="form-control form-control-sm" formControlName="CEP">
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="form-group">
+                    <span class="input-title">Estado</span>
+                    <input type="text" class="form-control form-control-sm" formControlName="estado">
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="form-group">
+                    <span class="input-title">Cidade</span>
+                    <input type="text" class="form-control form-control-sm" formControlName="cidade">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="form-group">
+                    <span class="input-title">Logradouro</span>
+                    <input type="text" class="form-control form-control-sm" formControlName="logradouro">
+                </div>
+            </div>
+        </div>
     </form>
 </div>
 <div class="modal-footer">
+    <button class="btn btn-danger btn-sm me-auto" (click)="deletePessoa()">Remover</button>
     <button class="btn btn-secondary btn-sm">Cancelar</button>
-    <button class="btn btn-success btn-sm">Salvar</button>
+    <button class="btn btn-success btn-sm" (click)="addPessoa()" *ngIf="!pessoa.id">Salvar</button>
+    <button class="btn btn-success btn-sm" (click)="updatePessoa()" *ngIf="pessoa.id">Salvar</button>
 </div>

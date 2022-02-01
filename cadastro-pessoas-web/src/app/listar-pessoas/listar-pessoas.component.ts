@@ -29,14 +29,29 @@ export class ListarPessoasComponent implements OnInit {
     })
   }
 
-  cadastrarPessoa() {
+  addPessoa() {
     this.bsModalRef = this.modalService.show(ModalPessoaComponent, {
       class: 'modal-dialog-centered modal-lg',
     });
 
     this.modalService.onHide.pipe(take(1)).subscribe(() => {
-      if(this.bsModalRef?.content.novoVinculo){
-        
+      if(this.bsModalRef?.content.pessoa.id){
+        this.pessoas.push(this.bsModalRef?.content.pessoa);
+      }
+    })
+  }
+
+  updatePessoa(pessoa: Pessoa, index: number){
+    this.bsModalRef = this.modalService.show(ModalPessoaComponent, {
+      class: 'modal-dialog-centered modal-lg',
+      initialState: {
+        pessoa: {...pessoa}
+      }
+    });
+
+    this.modalService.onHide.pipe(take(1)).subscribe(() => {
+      if(this.bsModalRef?.content.pessoa.id){
+        this.pessoas[index] = this.bsModalRef?.content.pessoa;
       }
     })
   }

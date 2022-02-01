@@ -22,6 +22,6 @@ namespace cadastro_pessoas.Model
         public string Logradouro { get; set; }
         public string Email { get; set; }
         public string Telefone { get; set; }
-        public DateTime DataCadastro { get; set; }
+        public DateTime? DataCadastro { get; set; }
     }
 }
