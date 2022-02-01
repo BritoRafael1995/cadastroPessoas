@@ -20,7 +20,7 @@ namespace cadastro_pessoas.Repository.Implementation
             }
             catch
             {
-                throw new Exception();
+                throw new InvalidOperationException();
             }
         }
 
@@ -28,11 +28,26 @@ namespace cadastro_pessoas.Repository.Implementation
         {
             try
             {
-                _collectionPessoa.FindOneAndDelete(p => p.Id == id);
+                var retorno = _collectionPessoa.FindOneAndDelete(p => p.Id == id);
+
+                if(retorno == null)
+                    throw new NullReferenceException();
             }
             catch
             {
-                throw new Exception();
+                throw new NullReferenceException();
+            }
+        }
+
+        public Pessoa GetPessoaByCpf(string cpf)
+        {
+            try
+            {
+                return _collectionPessoa.Find(p => p.CPF == cpf).FirstOrDefault();
+            }
+            catch
+            {
+                throw new InvalidOperationException();
             }
         }
 
@@ -44,7 +59,7 @@ namespace cadastro_pessoas.Repository.Implementation
             }
             catch
             {
-                throw new Exception();
+                throw new InvalidOperationException();
             }
         }
 
@@ -56,7 +71,7 @@ namespace cadastro_pessoas.Repository.Implementation
             }
             catch
             {
-                throw new Exception();
+                throw new InvalidOperationException();
             }
         }
 
@@ -68,7 +83,7 @@ namespace cadastro_pessoas.Repository.Implementation
             }
             catch
             {
-                throw new Exception();
+                throw new InvalidOperationException();
             }
         }
     }

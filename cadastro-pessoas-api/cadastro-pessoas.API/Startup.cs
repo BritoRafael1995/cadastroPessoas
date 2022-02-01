@@ -1,3 +1,4 @@
+using cadastro_pessoas.API.Filters;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -29,6 +30,9 @@ namespace cadastro_pessoas.API
 
             services.AddControllers();
             services.AddCors();
+            services.AddMvc(options => {
+                options.Filters.Add(new ExceptionFilter());
+            });
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "cadastro_pessoas.API", Version = "v1" });

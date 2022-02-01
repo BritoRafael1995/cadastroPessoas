@@ -11,12 +11,12 @@ import { PessoaService } from '../../services/pessoa.service';
   styleUrls: ['./modal-pessoa.component.scss']
 })
 export class ModalPessoaComponent implements OnInit {
-  
+
   formPessoa: FormGroup | any;
   pessoa: Pessoa = new Pessoa();
   pessoasCadastradas: Pessoa[] | undefined;
   modalRef?: BsModalRef;
-  
+
   constructor(
     public bsModalRef: BsModalRef,
     private fb: FormBuilder,
@@ -35,7 +35,7 @@ export class ModalPessoaComponent implements OnInit {
       sobrenome: [this.pessoa.sobrenome, Validators.required],
       nacionalidade: [this.pessoa.nacionalidade, Validators.required],
       CEP: [this.pessoa.cep, Validators.required],
-      cpf: [this.pessoa.cep, [Validators.required, Validators.minLength(11), Validators.maxLength(11)]],
+      cpf: [this.pessoa.cpf, [Validators.required, Validators.minLength(11), Validators.maxLength(11)]],
       estado: [this.pessoa.estado, Validators.required],
       cidade: [this.pessoa.cidade, Validators.required],
       logradouro: [this.pessoa.logradouro, Validators.required],
@@ -44,52 +44,77 @@ export class ModalPessoaComponent implements OnInit {
     });
   }
 
-  addPessoa(){
+  addPessoa() {
     this.pservice.addPessoas(this.formPessoa.value).subscribe((result) => {
       this.pessoa = result as Pessoa;
       this.toastr.success("Pessoa Adicionada", "Sucesso");
       this.bsModalRef.hide();
     }, err => {
-      console.log(err)
-      this.toastr.error("Pessoa Adicionada", "Erro");
+      switch (err.status) {
+        case 400:
+          this.toastr.error("Todos os campos são obrigatórios", "Erro");
+          break;
+        case 409:
+          this.toastr.error("CPF duplicado", "Erro");
+          break;
+        default:
+          this.toastr.error("Não foi possível executar a ação", "Erro");
+          break;
+      }
+
     })
   }
 
-  deletePessoa(){
+  deletePessoa() {
     this.modalRef?.hide();
     this.pservice.deletePessoa(this.formPessoa.value.id).subscribe((result) => {
       this.pessoasCadastradas = result as Pessoa[];
       this.toastr.success("Pessoa Removida", "Sucesso");
       this.bsModalRef.hide();
-    },err => {
-      this.toastr.error("Pessoa Adicionada", "Erro");
+    }, err => {
+
+      if (err.status == 404)
+        this.toastr.error("Pessoa não encontrada", "Erro");
+      else
+        this.toastr.error("Não foi possível executar a ação", "Erro");
+
     })
   }
 
-  updatePessoa(){
+  updatePessoa() {
     this.pservice.updatePessoa(this.formPessoa.value).subscribe((result) => {
       this.pessoa = result as Pessoa;
       this.toastr.success("Pessoa Atualizada", "Sucesso");
       this.bsModalRef.hide();
     }, err => {
-      this.toastr.error("Pessoa Adicionada", "Erro");
+      switch (err.status) {
+        case 400:
+          this.toastr.error("Todos os campos são obrigatórios", "Erro");
+          break;
+        case 409:
+          this.toastr.error("CPF duplicado", "Erro");
+          break;
+        default:
+          this.toastr.error("Não foi possível executar a ação", "Erro");
+          break;
+      }
     })
   }
 
   openModalConfirm(template: TemplateRef<any>) {
-    this.modalRef = this.modalService.show(template, {class: 'modal-sm'});
+    this.modalRef = this.modalService.show(template, { class: 'modal-sm' });
   }
 
-  consultarCEP(){
-    if(this.formPessoa.value.CEP.length == 8){
+  consultarCEP() {
+    if (this.formPessoa.value.CEP.length == 8) {
       this.pservice.consultaCEP(this.formPessoa.value.CEP).subscribe((result: any) => {
-        this.formPessoa.patchValue({cidade: result.localidade});
-        this.formPessoa.patchValue({estado: result.uf});
-        this.formPessoa.patchValue({logradouro: result.logradouro});
+        this.formPessoa.patchValue({ cidade: result.localidade });
+        this.formPessoa.patchValue({ estado: result.uf });
+        this.formPessoa.patchValue({ logradouro: result.logradouro });
       })
     }
   }
- 
+
   decline(): void {
     this.modalRef?.hide();
   }
