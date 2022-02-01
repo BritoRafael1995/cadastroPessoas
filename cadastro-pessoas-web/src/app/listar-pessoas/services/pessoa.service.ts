@@ -14,6 +14,10 @@ export class PessoaService {
     return this.http.post(this.baseUrl, pessoa);
   }
 
+  consultaCEP(cep: string){
+    return this.http.get(`http://viacep.com.br/ws/${cep}/json/`)
+  }
+
   getPessoa(id: string){
     return this.http.get(`${this.baseUrl}/${id}`);
   }

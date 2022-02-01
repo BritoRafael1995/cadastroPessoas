@@ -1,5 +1,5 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Pessoa } from 'src/app/shared/models/pessoa';
 import { PessoaService } from '../../services/pessoa.service';
@@ -24,22 +24,21 @@ export class ModalPessoaComponent implements OnInit {
 
   ngOnInit(): void {
     this.formBuild();
-    console.log(this.pessoa)
   }
 
   formBuild() {
     this.formPessoa = this.fb.group({
       id: [this.pessoa.id],
-      nome: [this.pessoa.nome],
-      sobrenome: [this.pessoa.sobrenome],
-      nacionalidade: [this.pessoa.nacionalidade],
-      CEP: [this.pessoa.cep],
-      estado: [this.pessoa.estado],
-      cidade: [this.pessoa.cidade],
-      logradouro: [this.pessoa.logradouro],
-      email: [this.pessoa.email],
-      telefone: [this.pessoa.telefone],
-      dataCadastro: [this.pessoa.dataCadastro]
+      nome: [this.pessoa.nome, Validators.required],
+      sobrenome: [this.pessoa.sobrenome, Validators.required],
+      nacionalidade: [this.pessoa.nacionalidade, Validators.required],
+      CEP: [this.pessoa.cep, Validators.required],
+      cpf: [this.pessoa.cep, [Validators.required, Validators.minLength(11), Validators.maxLength(11)]],
+      estado: [this.pessoa.estado, Validators.required],
+      cidade: [this.pessoa.cidade, Validators.required],
+      logradouro: [this.pessoa.logradouro, Validators.required],
+      email: [this.pessoa.email, [Validators.required, Validators.email]],
+      telefone: [this.pessoa.telefone, Validators.required]
     });
   }
 
@@ -67,6 +66,16 @@ export class ModalPessoaComponent implements OnInit {
 
   openModalConfirm(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template, {class: 'modal-sm'});
+  }
+
+  consultarCEP(){
+    if(this.formPessoa.value.CEP.length == 8){
+      this.pservice.consultaCEP(this.formPessoa.value.CEP).subscribe((result: any) => {
+        this.formPessoa.patchValue({cidade: result.localidade});
+        this.formPessoa.patchValue({estado: result.uf});
+        this.formPessoa.patchValue({logradouro: result.logradouro});
+      })
+    }
   }
  
   decline(): void {

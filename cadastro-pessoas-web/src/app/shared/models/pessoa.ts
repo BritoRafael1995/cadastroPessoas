@@ -4,6 +4,7 @@ export class Pessoa {
     sobrenome!: string;
     nacionalidade!: string;
     cep!: number;
+    cpf!: string;
     estado!: string;
     cidade!: string;
     logradouro!: string;

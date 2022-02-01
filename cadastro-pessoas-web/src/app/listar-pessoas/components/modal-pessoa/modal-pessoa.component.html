@@ -27,10 +27,16 @@
                     <input type="text" class="form-control form-control-sm" formControlName="email">
                 </div>
             </div>
-            <div class="col-6">
+            <div class="col-3">
                 <div class="form-group">
                     <span class="input-title">Telefone</span>
-                    <input type="text" class="form-control form-control-sm" formControlName="telefone">
+                    <input type="text" class="form-control form-control-sm" formControlName="telefone" mask="(00) 00000-0000">
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="form-group">
+                    <span class="input-title">CPF</span>
+                    <input type="text" class="form-control form-control-sm" formControlName="cpf" mask="000.000.000-00">
                 </div>
             </div>
         </div>
@@ -44,7 +50,7 @@
             <div class="col-2">
                 <div class="form-group">
                     <span class="input-title">CEP</span>
-                    <input type="text" class="form-control form-control-sm" formControlName="CEP">
+                    <input type="text" class="form-control form-control-sm" (change)="consultarCEP()" formControlName="CEP" mask="00000-000">
                 </div>
             </div>
             <div class="col-3">
@@ -73,8 +79,8 @@
 <div class="modal-footer">
     <button class="btn btn-danger btn-sm me-auto" (click)="openModalConfirm(confirmWindow)" *ngIf="pessoa.id">Remover</button>
     <button class="btn btn-secondary btn-sm">Cancelar</button>
-    <button class="btn btn-success btn-sm" (click)="addPessoa()" *ngIf="!pessoa.id">Salvar</button>
-    <button class="btn btn-success btn-sm" (click)="updatePessoa()" *ngIf="pessoa.id">Salvar</button>
+    <button class="btn btn-success btn-sm" (click)="addPessoa()" *ngIf="!pessoa.id" [disabled]="!formPessoa.valid">Salvar</button>
+    <button class="btn btn-success btn-sm" (click)="updatePessoa()" *ngIf="pessoa.id" [disabled]="!formPessoa.valid">Salvar</button>
 </div>
 
 <ng-template #confirmWindow>

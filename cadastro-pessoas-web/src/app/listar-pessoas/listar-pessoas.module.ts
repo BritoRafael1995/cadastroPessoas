@@ -6,6 +6,7 @@ import { ListarPessoasComponent } from './listar-pessoas.component';
 import { ModalPessoaComponent } from './components/modal-pessoa/modal-pessoa.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
+import { NgxMaskModule } from 'ngx-mask';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { SharedModule } from '../shared/shared.module';
     ListarPessoasRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
+    NgxMaskModule.forChild()
   ]
 })
 export class ListarPessoasModule { }
