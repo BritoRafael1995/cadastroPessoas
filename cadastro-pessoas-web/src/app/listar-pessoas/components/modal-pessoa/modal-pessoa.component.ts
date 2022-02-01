@@ -1,6 +1,7 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { ToastrService } from 'ngx-toastr';
 import { Pessoa } from 'src/app/shared/models/pessoa';
 import { PessoaService } from '../../services/pessoa.service';
 
@@ -20,7 +21,8 @@ export class ModalPessoaComponent implements OnInit {
     public bsModalRef: BsModalRef,
     private fb: FormBuilder,
     private pservice: PessoaService,
-    private modalService: BsModalService) { }
+    private modalService: BsModalService,
+    private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.formBuild();
@@ -45,7 +47,11 @@ export class ModalPessoaComponent implements OnInit {
   addPessoa(){
     this.pservice.addPessoas(this.formPessoa.value).subscribe((result) => {
       this.pessoa = result as Pessoa;
+      this.toastr.success("Pessoa Adicionada", "Sucesso");
       this.bsModalRef.hide();
+    }, err => {
+      console.log(err)
+      this.toastr.error("Pessoa Adicionada", "Erro");
     })
   }
 
@@ -53,14 +59,20 @@ export class ModalPessoaComponent implements OnInit {
     this.modalRef?.hide();
     this.pservice.deletePessoa(this.formPessoa.value.id).subscribe((result) => {
       this.pessoasCadastradas = result as Pessoa[];
+      this.toastr.success("Pessoa Removida", "Sucesso");
       this.bsModalRef.hide();
+    },err => {
+      this.toastr.error("Pessoa Adicionada", "Erro");
     })
   }
 
   updatePessoa(){
     this.pservice.updatePessoa(this.formPessoa.value).subscribe((result) => {
       this.pessoa = result as Pessoa;
+      this.toastr.success("Pessoa Atualizada", "Sucesso");
       this.bsModalRef.hide();
+    }, err => {
+      this.toastr.error("Pessoa Adicionada", "Erro");
     })
   }
 

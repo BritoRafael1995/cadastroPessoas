@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { ToastrService } from 'ngx-toastr';
 import { take } from 'rxjs';
 import { Pessoa } from '../shared/models/pessoa';
 import { ModalPessoaComponent } from './components/modal-pessoa/modal-pessoa.component';
@@ -17,7 +18,8 @@ export class ListarPessoasComponent implements OnInit {
   
   constructor(
     private pservice: PessoaService,
-    private modalService: BsModalService) { }
+    private modalService: BsModalService,
+    private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.getPessoas();
@@ -26,6 +28,8 @@ export class ListarPessoasComponent implements OnInit {
   getPessoas(){
     this.pservice.getPessoas().subscribe((result) => {
       this.pessoas = result as Pessoa[]
+    }, err => {
+      this.toastr.error("Não foi possivel carregar as pessoas", "Erro");
     })
   }
 

@@ -4,14 +4,13 @@ import { BootstrapModule } from './bootstrap/bootstrap.module';
 import { MaskPipe } from './pipes/mask.pipe';
 
 
-
 @NgModule({
   declarations: [
     MaskPipe
   ],
   imports: [
     CommonModule,
-    BootstrapModule
+    BootstrapModule,
   ],
   exports:[
     BootstrapModule,
