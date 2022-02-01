@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { BsModalRef } from 'ngx-bootstrap/modal';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Pessoa } from 'src/app/shared/models/pessoa';
 import { PessoaService } from '../../services/pessoa.service';
 
@@ -13,11 +13,14 @@ export class ModalPessoaComponent implements OnInit {
   
   formPessoa: FormGroup | any;
   pessoa: Pessoa = new Pessoa();
-  pessoasCadastradas: Pessoa[] = [];
+  pessoasCadastradas: Pessoa[] | undefined;
+  modalRef?: BsModalRef;
+  
   constructor(
     public bsModalRef: BsModalRef,
     private fb: FormBuilder,
-    private pservice: PessoaService) { }
+    private pservice: PessoaService,
+    private modalService: BsModalService) { }
 
   ngOnInit(): void {
     this.formBuild();
@@ -48,6 +51,7 @@ export class ModalPessoaComponent implements OnInit {
   }
 
   deletePessoa(){
+    this.modalRef?.hide();
     this.pservice.deletePessoa(this.formPessoa.value.id).subscribe((result) => {
       this.pessoasCadastradas = result as Pessoa[];
       this.bsModalRef.hide();
@@ -59,5 +63,13 @@ export class ModalPessoaComponent implements OnInit {
       this.pessoa = result as Pessoa;
       this.bsModalRef.hide();
     })
+  }
+
+  openModalConfirm(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template, {class: 'modal-sm'});
+  }
+ 
+  decline(): void {
+    this.modalRef?.hide();
   }
 }

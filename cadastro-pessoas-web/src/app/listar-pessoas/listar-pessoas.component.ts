@@ -50,8 +50,10 @@ export class ListarPessoasComponent implements OnInit {
     });
 
     this.modalService.onHide.pipe(take(1)).subscribe(() => {
-      if(this.bsModalRef?.content.pessoa.id){
+      if(this.bsModalRef?.content.pessoa.id && !this.bsModalRef?.content.pessoasCadastradas){
         this.pessoas[index] = this.bsModalRef?.content.pessoa;
+      } else if(this.bsModalRef?.content.pessoasCadastradas){
+        this.pessoas = this.bsModalRef?.content.pessoasCadastradas;
       }
     })
   }

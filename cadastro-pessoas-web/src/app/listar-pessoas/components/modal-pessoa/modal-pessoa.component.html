@@ -71,8 +71,16 @@
     </form>
 </div>
 <div class="modal-footer">
-    <button class="btn btn-danger btn-sm me-auto" (click)="deletePessoa()">Remover</button>
+    <button class="btn btn-danger btn-sm me-auto" (click)="openModalConfirm(confirmWindow)" *ngIf="pessoa.id">Remover</button>
     <button class="btn btn-secondary btn-sm">Cancelar</button>
     <button class="btn btn-success btn-sm" (click)="addPessoa()" *ngIf="!pessoa.id">Salvar</button>
     <button class="btn btn-success btn-sm" (click)="updatePessoa()" *ngIf="pessoa.id">Salvar</button>
 </div>
+
+<ng-template #confirmWindow>
+    <div class="modal-body text-center">
+      <p>Deseja remover {{pessoa.nome}} {{pessoa.sobrenome}}?</p>
+      <button type="button" class="btn btn-danger btn-sm me-1" (click)="deletePessoa()" >sim</button>
+      <button type="button" class="btn btn-secondary btn-sm" (click)="decline()" >Não</button>
+    </div>
+  </ng-template>
