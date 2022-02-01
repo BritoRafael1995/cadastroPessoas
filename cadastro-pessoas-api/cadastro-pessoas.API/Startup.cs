@@ -28,6 +28,7 @@ namespace cadastro_pessoas.API
         {
 
             services.AddControllers();
+            services.AddCors();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "cadastro_pessoas.API", Version = "v1" });
@@ -47,6 +48,10 @@ namespace cadastro_pessoas.API
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors(
+                options => options.WithOrigins("*").AllowAnyMethod().AllowAnyHeader()
+            );
 
             app.UseAuthorization();
 

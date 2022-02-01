@@ -1,0 +1,33 @@
+<div class="container h-100 py-5">
+
+    <div class="card p-3 h-100">
+
+        <table class="table table-sm caption-top table-hover">
+            <caption>
+                <div class="row">
+                    <div class="col-2">
+                        <span>Pessoas Cadastradas</span>
+                    </div>
+                    <div class="col-1 offset-9">
+                        <button class="btn btn-primary btn-xs" style="position: absolute; right: 1rem;" (click)="addPessoa()">Novo</button>
+                    </div>
+                </div>
+            </caption>
+            <thead>
+                <th>Nome</th>
+                <th>Telefone</th>
+                <th>E-mail</th>
+                <th>Estado</th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let pessoa of pessoas; let i = index;" (click)="updatePessoa(pessoa, i)">
+                    <td>{{pessoa.nome}} {{pessoa.sobrenome}}</td>
+                    <td>{{pessoa.telefone | mask: 'telefone'}}</td>
+                    <td>{{pessoa.email}}</td>
+                    <td>{{pessoa.estado}}</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>
