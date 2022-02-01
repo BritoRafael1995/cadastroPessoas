@@ -24,6 +24,9 @@ namespace cadastro_pessoas.Business.Implementation
         {
             ValidatePessoa(pessoa);
 
+            if (_pessoaRepository.GetPessoaByCpf(pessoa.CPF) != null)
+                throw new DuplicateWaitObjectException();
+
             pessoa.Id = ObjectId.GenerateNewId().ToString();
             pessoa.DataCadastro = DateTime.Now;
             _pessoaRepository.AddPessoa(pessoa);
@@ -69,9 +72,6 @@ namespace cadastro_pessoas.Business.Implementation
                 string.IsNullOrEmpty(pessoa.Telefone) ||
                 pessoa.CEP == 0)
                 throw new InvalidOperationException();
-            
-            if(_pessoaRepository.GetPessoaByCpf(pessoa.CPF) != null)
-                throw new DuplicateWaitObjectException();
         }
     }
 }
