@@ -12,6 +12,7 @@ namespace cadastro_pessoas.Repository.Interface
         void AddPessoa(Pessoa pessoa);
         void DeletePessoa(string id);
         Pessoa GetPessoaById(string id);
+        Pessoa GetPessoaByCpf(string cpf);
         List<Pessoa> GetPessoas();
         void UpdatePessoa(string id, Pessoa pessoa);
     }

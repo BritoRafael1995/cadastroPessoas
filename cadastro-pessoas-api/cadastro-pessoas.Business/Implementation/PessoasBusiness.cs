@@ -22,6 +22,8 @@ namespace cadastro_pessoas.Business.Implementation
 
         public Pessoa AddPessoa(Pessoa pessoa)
         {
+            ValidatePessoa(pessoa);
+
             pessoa.Id = ObjectId.GenerateNewId().ToString();
             pessoa.DataCadastro = DateTime.Now;
             _pessoaRepository.AddPessoa(pessoa);
@@ -48,9 +50,28 @@ namespace cadastro_pessoas.Business.Implementation
 
         public Pessoa UpdatePessoa(string id, Pessoa pessoa)
         {
+            ValidatePessoa(pessoa);
+
             _pessoaRepository.UpdatePessoa(id, pessoa);
 
             return pessoa;
+        }
+
+        private void ValidatePessoa(Pessoa pessoa)
+        {
+            if (string.IsNullOrEmpty(pessoa.Nome) || 
+                string.IsNullOrEmpty(pessoa.Sobrenome) ||
+                string.IsNullOrEmpty(pessoa.Cidade) ||
+                string.IsNullOrEmpty(pessoa.CPF) ||
+                string.IsNullOrEmpty(pessoa.Email) ||
+                string.IsNullOrEmpty(pessoa.Estado) ||
+                string.IsNullOrEmpty(pessoa.Logradouro) ||
+                string.IsNullOrEmpty(pessoa.Telefone) ||
+                pessoa.CEP == 0)
+                throw new InvalidOperationException();
+            
+            if(_pessoaRepository.GetPessoaByCpf(pessoa.CPF) != null)
+                throw new DuplicateWaitObjectException();
         }
     }
 }
