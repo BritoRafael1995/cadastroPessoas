@@ -35,7 +35,7 @@
             <tbody>
                 <tr *ngFor="let pessoa of pessoas; let i = index;" (click)="updatePessoa(pessoa, i)">
                     <td>{{pessoa.nome}} {{pessoa.sobrenome}}</td>
-                    <td>{{pessoa.telefone}}</td>
+                    <td>{{pessoa.telefone | mask: 'telefone'}}</td>
                     <td>{{pessoa.email}}</td>
                     <td>{{pessoa.estado}}</td>
                 </tr>

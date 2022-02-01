@@ -3,9 +3,9 @@ import { CommonModule } from '@angular/common';
 
 import { ListarPessoasRoutingModule } from './listar-pessoas-routing.module';
 import { ListarPessoasComponent } from './listar-pessoas.component';
-import { BootstrapModule } from '../shared/bootstrap/bootstrap.module';
 import { ModalPessoaComponent } from './components/modal-pessoa/modal-pessoa.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -16,9 +16,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     ListarPessoasRoutingModule,
-    BootstrapModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule
   ]
 })
 export class ListarPessoasModule { }
